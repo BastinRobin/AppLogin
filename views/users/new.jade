@@ -1,0 +1,10 @@
+h1 New User
+
+form(action="/users" method="POST")
+	p: label Name
+		input(type="text" name="name")
+	p: label Email
+		input(type="email" name="email")
+	p: label Age
+		input(type="number" name="age")
+	p: button(type="submit") Submit
