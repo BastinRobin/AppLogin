@@ -1,6 +1,7 @@
 
 /**
  * Module dependencies.
+ * Functions: Routing, Jade Templating
  */
 
 var express = require('express');
@@ -12,7 +13,7 @@ var app = express();
 var mongoose = require('mongoose');
 
 // all environments
-app.set('port', process.env.PORT || 8000);
+app.set('port', process.env.PORT || 3001);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.use(express.favicon());
@@ -43,7 +44,6 @@ var UserSchema = new mongoose.Schema({
 
 //Basic routes
 app.get('/', routes.index);
-
 
 //Display all users
 app.get('/users', function(req, res) {
@@ -99,6 +99,15 @@ app.put('/users/:name', function(req, res) {
 			res.redirect('/users/' + b.name);
 		}
 	);
+});
+
+//Delete Route
+app.get('/users/:name/delete', function(req, res) {
+	Users.remove(
+		{name: req.params.name},
+		function(err) {
+			res.redirect('/users/'); 
+		});
 });
 
 http.createServer(app).listen(app.get('port'), function(){

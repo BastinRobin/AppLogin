@@ -1,5 +1,9 @@
 h1 All Users
 
+a(href="/users/new") New
+br
+a(href="/users/delete") Delete
 ul
   - each user in users
-    li: a(href="/users/#{user.name}") #{user.name} #{user.email}
+    li: a(href="/users/#{user.name}") #{user.name} #{user.email} 
+    b:  a(href="/users/#{user.name}/delete") Delete
